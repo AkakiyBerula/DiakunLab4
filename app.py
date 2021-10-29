@@ -7,7 +7,7 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = "Thisisasecret!"
 
 class LoginForm(FlaskForm):
-    username = StringField('username', validators=[InputRequired(message='A username is required!')])
+    username = StringField('username', validators=[InputRequired('A username is required!')])
     password = PasswordField('password', validators=[InputRequired('Password is required!')])
 
 @app.route('/form', methods=['GET', 'POST'])
