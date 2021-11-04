@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect,  url_for, flash
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField
 from wtforms.validators import InputRequired, Length, AnyOf
@@ -14,7 +14,9 @@ class LoginForm(FlaskForm):
 def form():
     form = LoginForm()
     if form.validate_on_submit():
-        return '<h1>The username is {}. The password is {}.</h1>'.format(form.username.data, form.password.data)
+        flash('Дані занесені успішно!')
+        flash('The username is ' + form.username.data + ". The password is " + form.password.name + "!")
+        return redirect(url_for('form'))
     return render_template('form.html', form=form)
 
 if __name__ == '__name__':
